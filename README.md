@@ -1,6 +1,6 @@
 # BackendEntradas_DISOFT_G16
 
-Backend de **venta de entradas para espectáculos** del proyecto de Diseño de Software, realizado por Alejandro Fernández Muñoz. Gestiona:
+Backend de **venta de entradas para eventos** del proyecto de Diseño de Software, realizado por Alejandro Fernández Muñoz. Gestiona:
 
 - Escenarios (estadios, teatros, etc.).
 - Espectáculos (conciertos, obras, etc.).
@@ -27,4 +27,8 @@ Este backend será consumido por
 La aplicación quedará disponible en:
 
 - `http://localhost:8080`
+
+# Estructura
+
+<img width="400" height="390" alt="Captura de pantalla 2026-02-16 a las 20 15 20" src="https://github.com/user-attachments/assets/960aec11-a258-41fa-ad44-686b12e7504b" />
 
