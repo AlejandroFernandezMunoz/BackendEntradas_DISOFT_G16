@@ -12,17 +12,11 @@ Este backend será consumido por
 - **Frontend_DISOFT_G16** (https://github.com/AlejandroFernandezMunoz/Frontend_DISOFT_G16) 
 - **BackendUsuarios_DISOFT_G16** (https://github.com/AlejandroFernandezMunoz/BackendUsuarios_DISOFT_G16)
 
----
-
 # Compilar
 
 ```
 ./mvnw clean compile
 ```
-
-
-
----
 
 # Ejecutar la aplicación
 
