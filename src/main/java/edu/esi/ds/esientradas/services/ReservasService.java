@@ -25,7 +25,7 @@ public class ReservasService {
     private final EntradaDao dao;
     private final TokenDao tokenDao;
 
-    private static final long TIEMPO_EXPIRACION_MS = 5 * 60 * 1000;
+    private static final long TIEMPO_EXPIRACION_MS = 10 * 60 * 1000;
 
     public ReservasService(EntradaDao dao, TokenDao tokenDao) {
         this.dao = dao;
