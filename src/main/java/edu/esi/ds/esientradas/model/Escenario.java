@@ -1,16 +1,19 @@
 package edu.esi.ds.esientradas.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
+import java.util.ArrayList;
+import java.util.List;
+
+// Recinto donde se celebra el espectaculo (WiZink, Teatro Lope de Vega, ...).
 @Entity
 public class Escenario {
-    @Id @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     private String descripcion;
@@ -18,37 +21,14 @@ public class Escenario {
     @OneToMany(mappedBy = "escenario")
     private List<Espectaculo> espectaculos = new ArrayList<>();
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public List<Espectaculo> getEspectaculos() {
-        return espectaculos;
-    }
-
-    public void setEspectaculos(List<Espectaculo> espectaculos) {
-        this.espectaculos = espectaculos;
-    }
-
-
+    @JsonIgnore
+    public List<Espectaculo> getEspectaculos() { return espectaculos; }
+    public void setEspectaculos(List<Espectaculo> espectaculos) { this.espectaculos = espectaculos; }
 }

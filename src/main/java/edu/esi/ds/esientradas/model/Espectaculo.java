@@ -1,19 +1,14 @@
 package edu.esi.ds.esientradas.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-
+// Un evento concreto: artista + fecha + escenario. aperturaTaquilla marca cuando se
+// abre la cola virtual (null => venta abierta sin cola).
 @Entity
 public class Espectaculo {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,44 +23,26 @@ public class Espectaculo {
     @OneToMany(mappedBy = "espectaculo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Entrada> entradas = new ArrayList<>();
 
-    public Long getId() {
-        return id;
-    }
+    // El esquema real no tiene columna de apertura de taquilla, asi que no se persiste.
+    // Queda como null y la cola virtual funciona sin verja horaria.
+    @Transient
+    private LocalDateTime aperturaTaquilla;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getArtista() { return artista; }
+    public void setArtista(String artista) { this.artista = artista; }
+    public LocalDateTime getFecha() { return fecha; }
+    public void setFecha(LocalDateTime fecha) { this.fecha = fecha; }
 
-    public String getArtista() {
-        return artista;
-    }
+    @JsonIgnore
+    public Escenario getEscenario() { return escenario; }
+    public void setEscenario(Escenario escenario) { this.escenario = escenario; }
 
-    public void setArtista(String artista) {
-        this.artista = artista;
-    }
+    @JsonIgnore
+    public List<Entrada> getEntradas() { return entradas; }
+    public void setEntradas(List<Entrada> entradas) { this.entradas = entradas; }
 
-    public LocalDateTime getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
-    }
-
-    public Escenario getEscenario() {
-        return escenario;
-    }
-
-    public void setEscenario(Escenario escenario) {
-        this.escenario = escenario;
-    }
-
-    public List<Entrada> getEntradas() {
-        return entradas;
-    }
-
-    public void setEntradas(List<Entrada> entradas) {
-        this.entradas = entradas;
-    }
-
+    public LocalDateTime getAperturaTaquilla() { return aperturaTaquilla; }
+    public void setAperturaTaquilla(LocalDateTime aperturaTaquilla) { this.aperturaTaquilla = aperturaTaquilla; }
 }
